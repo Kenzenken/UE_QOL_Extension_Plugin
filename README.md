@@ -1,4 +1,5 @@
 # QOL_Extension_UE_5
+Version 1.01
  Quality Of Life Plugin for Unreal Engine  5 and above by Kenneth Koo
 
 Installation :
@@ -20,6 +21,9 @@ QOL Plugin V1 features:
 - Show triangle count of actors selected. (Types such as landscape are not supported)
 - Show triangle count of overall actors in current level.
 - Show texture memory consumption within the maximum streaming texture pool.
+- Group actors by tag feature.
+- Ungroup actors.
+- Select and focuses actors.
 
 2) UV details
 - Display UV Texture Map and UV channels in selected actor in viewport.

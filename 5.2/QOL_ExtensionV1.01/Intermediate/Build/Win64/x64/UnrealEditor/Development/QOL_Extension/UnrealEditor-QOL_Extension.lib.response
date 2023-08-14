@@ -1,0 +1,12 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UnrealEditor-QOL_Extension.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"G:\Unreal5.2_Build\QOL_UE_build\Intermediate\Build\Win64\x64\QOL_UE_buildEditor\Development\UnrealEd\SharedPCH.UnrealEd.ShadowErrors.InclOrderUnreal5_0.h.obj"
+"G:\Unreal5.2_Build\QOL_UE_build\Plugins\QOL_Extension\Intermediate\Build\Win64\x64\UnrealEditor\Development\QOL_Extension\Module.QOL_Extension.cpp.obj"
+"G:\Unreal5.2_Build\QOL_UE_build\Plugins\QOL_Extension\Intermediate\Build\Win64\x64\UnrealEditor\Development\QOL_Extension\Default.rc2.res"
+/OUT:"G:\Unreal5.2_Build\QOL_UE_build\Plugins\QOL_Extension\Intermediate\Build\Win64\x64\UnrealEditor\Development\QOL_Extension\UnrealEditor-QOL_Extension.lib"

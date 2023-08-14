@@ -1,0 +1,12 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.QOL_Extension.cpp.obj": [
+			"QOL_Extension.init.gen.cpp.obj",
+			"QOL_ExtensionWidget.gen.cpp.obj",
+			"QOL_ExtensionWidget.cpp.obj",
+			"QOL_Extension.cpp.obj",
+			"CustomSlateStyle.cpp.obj"
+		]
+	}
+}

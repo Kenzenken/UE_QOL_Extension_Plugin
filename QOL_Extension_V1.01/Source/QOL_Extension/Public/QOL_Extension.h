@@ -3,8 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Modules/ModuleManager.h"
-#include "Framework/Commands/Commands.h"
+
 
 class FQOL_ExtensionModule : public IModuleInterface
 {

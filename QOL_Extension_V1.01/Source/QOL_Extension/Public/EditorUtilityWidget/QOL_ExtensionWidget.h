@@ -40,9 +40,10 @@ public:
 	// Clean up function during OnDestruct event to ensure no duplicates of delegates.
 	UFUNCTION(BlueprintCallable, Category = "Selection Changed Editor Utility Widget")
 	void OnDestructWidget();
-	
+
+
 #pragma region Asset Details
-	
+public:
 	// Execute GetSelectedActor() from QOL_Extension.cpp and store/output it in a TArray AActor*
 	UFUNCTION(CallInEditor, BlueprintCallable, Category = "AssetProperties")
 	void ExecuteSelectedActors(TArray<AActor*>& OutSelectedActors);
@@ -56,6 +57,15 @@ public:
 
 	UPROPERTY(VisibleAnywhere,BlueprintReadOnly ,Category = "AssetProperties")
 	FText LastSelectedActorName = FText::FromString(TEXT("SelectedActor"));
+
+	UFUNCTION(CallInEditor,BlueprintCallable,Category = "AssetProperties")
+	void AddTagToSelectedActors(FName TagName);
+
+	UFUNCTION(CallInEditor,BlueprintCallable,Category = "AssetProperties")
+	void RemoveSelectedActorsTag(FName RemoveTagName);
+
+	UFUNCTION(CallInEditor,BlueprintCallable,Category = "AssetProperties")
+	void SelectActorsByTag(FName TagToSelect, TArray<AActor*> AllActors);
 	
 #pragma endregion
 

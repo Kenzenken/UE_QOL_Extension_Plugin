@@ -70,7 +70,6 @@ void UQOL_ExtensionWidget::StartWidget()
 
 		DebugHeader::ShowNotifyInfo(TEXT("QOL Extension Tab is launched"));
 	}
-	
 }
 // **OnDestructWidget() to be executed when OnDestruct Event(Widget closed) for cleanups
 void UQOL_ExtensionWidget::OnDestructWidget()
@@ -516,6 +515,77 @@ void UQOL_ExtensionWidget::GetUVChannels(TArray<AActor*>&SelectedActors)
 
 #pragma region GPU Access
 
+void UQOL_ExtensionWidget::AddTagToSelectedActors(FName TagName)
+{
+	// Check if TagName is valid
+	if (TagName.IsNone() || TagName.IsEqual(NAME_None))
+	{
+		return;
+	}
+	GEditor->BeginTransaction(FText::FromString("Group Actors"));
+	// Obtain the editor's selected actor set
+	USelection* SelectedActors = GEditor->GetSelectedActors();
+	for (FSelectionIterator It(*SelectedActors); It; ++It)
+	{
+		AActor* Actor = Cast<AActor>(*It);
+		if (Actor)
+		{
+			Actor->Tags.AddUnique(TagName);
+		}
+	}
+
+	GEditor->EndTransaction();
+}
+
+void UQOL_ExtensionWidget::RemoveSelectedActorsTag(FName RemoveTagName)
+{
+	// Check if TagName is valid
+	if (RemoveTagName.IsNone() || RemoveTagName.IsEqual(NAME_None))
+	{
+		return;
+	}
+	GEditor->BeginTransaction(FText::FromString("Ungroup Actors"));
+	{
+		// Obtain the editor's selected actor set
+		USelection* SelectedActors = GEditor->GetSelectedActors();
+    
+		for (FSelectionIterator It(*SelectedActors); It; ++It)
+		{
+			AActor* Actor = Cast<AActor>(*It);
+			if (Actor)
+			{
+				Actor->Tags.Remove(RemoveTagName);
+			}
+		}
+	}
+	GEditor->EndTransaction();
+}
+
+void UQOL_ExtensionWidget::SelectActorsByTag(FName TagToSelect, TArray<AActor*> AllActors)
+{
+	// Clear current selection
+	GEditor->SelectNone(true, true, false);
+    
+	TArray<AActor*> SelectedActors;
+	
+	// Iterate over all actors in the given array
+	for (AActor* Actor : AllActors)
+	{
+		if (Actor && Actor->Tags.Contains(TagToSelect))
+		{
+			// Select the actor
+			GEditor->SelectActor(Actor, true, true, true, true);
+			SelectedActors.Add(Actor);
+		}
+	}
+
+	// Focus the viewport camera on the selected actors
+	if (SelectedActors.Num() > 0)
+	{
+		GEditor->MoveViewportCamerasToActor(SelectedActors, true);
+	}
+}
+
 void UQOL_ExtensionWidget::GetRHIMemoryStat(int64& MemoryStats, int64&DedicatedVideoMemorySize, int64&TexturePool)
 {
 	if (UVTexture)
@@ -535,11 +605,13 @@ void UQOL_ExtensionWidget::GetRHIMemoryStat(int64& MemoryStats, int64&DedicatedV
 
 void UQOL_ExtensionWidget::OpenGPUVisualiser()
 {
-	if (GIsEditor)
-	{
-		GEngine->Exec(nullptr, TEXT("ProfileGPU"));
-		DebugHeader::ShowNotifyInfo(TEXT("Launching GPU Visualiser Tab"));
-	}
+#if WITH_EDITOR
+		if (GEngine)
+		{
+			GEngine->Exec(nullptr, TEXT("ProfileGPU"), *GLog);
+		}
+#endif
+	
 }
 
 #pragma endregion

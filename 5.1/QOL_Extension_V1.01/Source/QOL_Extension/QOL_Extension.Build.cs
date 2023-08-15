@@ -1,4 +1,4 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
+// Copyright 2023, Kenneth Koo, All rights reserved
 
 using UnrealBuildTool;
 

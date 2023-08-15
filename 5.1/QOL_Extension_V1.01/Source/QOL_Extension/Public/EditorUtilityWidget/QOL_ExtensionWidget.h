@@ -10,6 +10,7 @@
 #include "Materials/MaterialInterface.h"
 #include "Particles/ParticleSystem.h"
 #include "Sound/SoundCue.h"
+#include "NiagaraEmitter.h"
 
 #include "QOL_ExtensionWidget.generated.h"
 

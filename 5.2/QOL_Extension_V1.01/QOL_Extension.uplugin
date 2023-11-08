@@ -1,0 +1,40 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.01",
+	"FriendlyName": "QOL Extension 5.2",
+	"Description": "Unreal Engine Quality Of Life Extension for Artists",
+	"Category": "QOL",
+	"CreatedBy": "Kenneth Koo Junn Kit",
+	"CreatedByURL": "",
+	"DocsURL": "https://www.youtube.com/watch?v=JYXeuaH4Ils&t=326s",
+	"MarketplaceURL": "com.epicgames.launcher:\n//ue/marketplace/product/bd58e635364d4b6892811d800ac99c52",
+	"SupportURL": "",
+	"EngineVersion": "5.2.0",
+	"CanContainContent": true,
+	"Installed": true,
+	"Modules": [
+		{
+			"Name": "QOL_Extension",
+			"Type": "Editor",
+			"LoadingPhase": "PreDefault",
+			"PlatformAllowList": [
+				"Win64"
+			]
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "EditorScriptingUtilities",
+			"Enabled": true
+		},
+		{
+			"Name": "Niagara",
+			"Enabled": true
+		},
+		{
+			"Name": "GeometryCache",
+			"Enabled": true
+		}
+	]
+}
